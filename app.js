@@ -1,10 +1,15 @@
 var express = require('express');
 var app = express();
+var path = require('path');
 var http = require('http');
 var server = http.Server(app);
 
+app.set('views', path.join(__dirname, ''));
+app.engine('html', require('ejs').renderFile);
+app.use(express.static(path.join(__dirname, '')));
+
 app.get('/', function(req, res) {
-	res.send('<h1>Say What You Want</h1>');
+	res.render('chat.html');
 });
 
 server.listen(5000, function() {
