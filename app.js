@@ -8,11 +8,10 @@ var io = require('socket.io')(server);
 var numUsersConnected = 0;
 
 app.set('views', path.join(__dirname, ''));
-app.engine('html', require('ejs').renderFile);
 app.use(express.static(path.join(__dirname, '')));
 
 app.get('/', function(req, res) {
-	res.render('chat.html');
+	res.sendFile('chat.html');
 });
 
 io.on('connection', function(socket) {
@@ -28,6 +27,6 @@ io.on('connection', function(socket) {
 	});
 });
 
-server.listen(5000, function() {
+server.listen(process.env.PORT || 5000, function() {
 	console.log ('Started listening on port 5000');
 });

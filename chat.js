@@ -1,8 +1,10 @@
 var socket = io();
 $('form').submit(function(){
-	socket.emit('chat-message', $('#message-field').val());
-	$('#message-field').val('');
-	return false;
+	if ($('#message-field').val() != null && $('#message-field').val().trim() != "" ) {
+		socket.emit('chat-message', $('#message-field').val());
+		$('#message-field').val('');
+		return false;
+	}
 });
 socket.on('chat-message', function(message) {
 	console.log('received message: ' + message);
