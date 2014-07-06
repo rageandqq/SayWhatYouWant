@@ -4,3 +4,7 @@ $('form').submit(function(){
 	$('#message-field').val('');
 	return false;
 });
+socket.on('chat-message', function(message) {
+	console.log('received message: ' + message);
+	$('#chat').append('<li>' + message + '</li>');
+});
