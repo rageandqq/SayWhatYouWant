@@ -3,21 +3,26 @@
 	<head>
 		<title>Say What You Want</title>
 		<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"></link>
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="chat.css"></link>
 	</head>
 	<body>
+		<i class="glyphicon glyphicon-info-sign"></i>
 		<h1 class="text-center">Say What You Want</h1>
+		<hr>
 		<div class="container">
 			<ul id="chat"></ul>
 		</div>
 		<form action="">
 			<div class="input-group">
-				<input type="text" class="form-control">
+				<input type="text" class="form-control" id="message-field">
 				<span class="input-group-btn">
 				<button class="btn btn-primary" type="button">Send</button>
 				</span>
 			</div>
 		</form>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="chat.js"></script>
 	</body>
 </html>

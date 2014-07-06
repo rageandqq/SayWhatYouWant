@@ -16,3 +16,9 @@ form {
 #chat li:nth-child(odd) { 
 	background: #eee; 
 }
+i {
+	position: fixed !important;
+	top: 5px !important;
+	right: 5px !important;
+	font-size: 1.5em;
+}
