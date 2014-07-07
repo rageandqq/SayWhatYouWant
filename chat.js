@@ -3,19 +3,42 @@
 									 */
 var socket = io();
 
+var glyphMap = {};
+glyphMap['l'] = '<i class="glyphicon glyphicon-thumbs-up">';
+glyphMap['+'] = '<i class="glyphicon glyphicon-plus">';
+glyphMap['*'] = '<i class="glyphicon glyphicon-asterisk">';
+glyphMap['<3'] = '<i class="glyphicon glyphicon-heart">';
+glyphMap['u'] = '<i class="glyphicon glyphicon-magnet">';
+glyphMap['x'] = '<i class="glyphicon glyphicon-remove">';
+glyphMap['!'] = '<i class="glyphicon glyphicon-exclamation-sign">';
+glyphMap['$'] = '<i class="glyphicon glyphicon-usd">';
+glyphMap['^'] = '<i class="glyphicon glyphicon-chevron-up">';
+glyphMap['>'] = '<i class="glyphicon glyphicon-chevron-right">';
+glyphMap['<'] = '<i class="glyphicon glyphicon-chevron-left">';
+glyphMap['?'] = '<i class="glyphicon glyphicon-question-sign">';
+
+var sentMessages = [];
+var messageIndex = null;
+var hasCycledMessages = false;
+
 $('form').submit(function(){
-	if ($('#message-field').val() != null && $('#message-field').val().trim() != "" ) {
+	var message = $('#message-field').val();
+	if (message != null && message.trim() != "" ) {
 		var data = {
 			user: $('#name-field').val(),
-			message: $('#message-field').val()
+			message: message
 		}
+
+		sentMessages.push(message);
+		messageIndex = sentMessages.length - 1;
+		hasCycledMessages = false;
 
 		socket.emit('chat-message', data);
 		$('#message-field').val('');
 
 		var editedData = {
 			user: ((data.user == null || data.user == '')? 'Anon' : data.user.trim()),
-			message: data.message.trim()
+			message: message.trim()
 		}
 		addMessage(editedData);
 
@@ -60,16 +83,31 @@ $('#name-field').keypress(function(e) {
 	}
 })
 
-var glyphMap = {};
-glyphMap['l'] = '<i class="glyphicon glyphicon-thumbs-up">';
-glyphMap['+'] = '<i class="glyphicon glyphicon-plus">';
-glyphMap['*'] = '<i class="glyphicon glyphicon-asterisk">';
-glyphMap['<3'] = '<i class="glyphicon glyphicon-heart">';
-glyphMap['u'] = '<i class="glyphicon glyphicon-magnet">';
-glyphMap['x'] = '<i class="glyphicon glyphicon-remove">';
-glyphMap['!'] = '<i class="glyphicon glyphicon-exclamation-sign">';
-glyphMap['$'] = '<i class="glyphicon glyphicon-usd">';
-glyphMap['^'] = '<i class="glyphicon glyphicon-chevron-up">';
-glyphMap['>'] = '<i class="glyphicon glyphicon-chevron-right">';
-glyphMap['<'] = '<i class="glyphicon glyphicon-chevron-left">';
-glyphMap['?'] = '<i class="glyphicon glyphicon-question-sign">';
+function displayCycledMessage () {
+	$('#message-field').val(sentMessages[messageIndex]);
+}
+
+$('#message-field').keydown(function (e) {
+	var key = e.which;
+	if (sentMessages.length > 0 && messageIndex != null) {
+		if (!hasCycledMessages && (key == 38 || key == 40)) {
+			e.preventDefault();
+			hasCycledMessages = true;
+			displayCycledMessage();
+		}
+		else {
+			if (hasCycledMessages && key == 38 && messageIndex - 1 >= 0) {
+				e.preventDefault();
+				messageIndex--;
+				displayCycledMessage();
+			}
+			else { 
+				if (hasCycledMessages && key == 40 && messageIndex + 1 < sentMessages.length) {
+					e.preventDefault();
+					messageIndex++;
+					displayCycledMessage();
+				}
+			}
+		}
+	}
+});
