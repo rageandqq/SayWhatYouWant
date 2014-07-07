@@ -7,6 +7,8 @@ $('form').submit(function(){
 	}
 });
 socket.on('chat-message', function(message) {
-	console.log('received message: ' + message);
 	$('#chat').append('<li>' + message + '</li>');
+});
+socket.on('user-connection', function(num) {
+	$('#users').text('Users online: ' + num);
 });

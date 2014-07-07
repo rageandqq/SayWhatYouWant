@@ -12,9 +12,11 @@ form {
 	list-style-type: none; 
 	margin: 0; 
 	padding: 0; 
-	overflow-y: auto;
-	height: 30%;
 	overflow-x: hidden;
+}
+#chatContainer {
+	max-height:30%;
+	overflow-y: auto;
 }
 #chat li { 
 	padding: 5px 10px; 
@@ -27,4 +29,5 @@ i {
 	top: 5px !important;
 	right: 5px !important;
 	font-size: 1.5em;
+	cursor: pointer;
 }

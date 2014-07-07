@@ -8,15 +8,14 @@
 	<body>
 		<i class="glyphicon glyphicon-info-sign"></i>
 		<div class="page-header">
-			<h1 class="text-center" id="head">Say What You Want
-			<small class="pull-right">Users online: </small></h1>
+			<h1 class="text-center">Say What You Want<br><small id="users">Users online:</small></h1></br></h1>
 		</div>
-		<div class="container-fluid">
+		<div id="chatContainer" class="container-fluid">
 			<ul id="chat"></ul>
 		</div>
-		<form class="container-fluid" action="">
+		<form class="container-fluid">
 			<div class="input-group">
-				<input type="text" class="form-control" id="message-field">
+				<input type="text" class="form-control" id="message-field" required>
 				<span class="input-group-btn">
 				<button class="btn btn-primary" type="submit">Send</button>
 				</span>
