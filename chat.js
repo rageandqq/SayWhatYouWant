@@ -1,8 +1,9 @@
 /* 
 	Created by Sameer Chitley, 2014 
 									 */
+/*jshint unused:true, eqnull:true */
 var socket = io();
-
+/* jshint ignore:start */
 var glyphMap = {};
 glyphMap['l'] = '<i class="glyphicon glyphicon-thumbs-up">';
 glyphMap['+'] = '<i class="glyphicon glyphicon-plus">';
@@ -16,18 +17,18 @@ glyphMap['^'] = '<i class="glyphicon glyphicon-chevron-up">';
 glyphMap['>'] = '<i class="glyphicon glyphicon-chevron-right">';
 glyphMap['<'] = '<i class="glyphicon glyphicon-chevron-left">';
 glyphMap['?'] = '<i class="glyphicon glyphicon-question-sign">';
-
+/* jshint ignore:end */
 var sentMessages = [];
 var messageIndex = null;
 var hasCycledMessages = false;
 
 $('form').submit(function(){
 	var message = $('#message-field').val();
-	if (message != null && message.trim() != "" ) {
+	if (message != null && message.trim() !== "" ) {
 		var data = {
 			user: $('#name-field').val(),
 			message: message
-		}
+		};
 
 		sentMessages.push(message);
 		messageIndex = sentMessages.length - 1;
@@ -37,9 +38,9 @@ $('form').submit(function(){
 		$('#message-field').val('');
 
 		var editedData = {
-			user: ((data.user == null || data.user == '')? 'Anon' : data.user.trim()),
+			user: ((data.user == null || data.user !== '')? 'Anon' : data.user.trim()),
 			message: message.trim()
-		}
+		};
 		addMessage(editedData);
 
 		return false;
@@ -66,22 +67,22 @@ socket.on('user-connection', function(num) {
 
 $('#userModal').on('shown.bs.modal', function () {
     $('#name-field').focus();
-})
+});
 
 $('#userModal').on('hidden.bs.modal', function () {
     $('#message-field').focus();
-})
+});
 
 $('#infoModal').on('hidden.bs.modal', function () {
     $('#message-field').focus();
-})
+});
 
 $('#name-field').keypress(function(e) {		
 	if (e.which == 13 && $('#name-field').is(':focus')) {
 		$('#userModal').modal('hide');
 		return false;
 	}
-})
+});
 
 function displayCycledMessage () {
 	$('#message-field').val(sentMessages[messageIndex]);
