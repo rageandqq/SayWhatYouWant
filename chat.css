@@ -1,6 +1,7 @@
-body {
-	height: 100%;
-}
+/* 
+	Created by Sameer Chitley, 2014 
+									 */
+
 form {  
 	padding: 3px; 
 	position: fixed; 
@@ -12,17 +13,16 @@ form {
 	list-style-type: none; 
 	margin: 0; 
 	padding: 0; 
+	height: 60vh !important;
 	overflow-x: hidden;
-}
-#chatContainer {
-	max-height:30%;
-	overflow-y: auto;
+	overflow-y: scroll;
+	float: clear;
 }
 #chat li { 
 	padding: 5px 10px; 
 }
 #chat li:nth-child(odd) { 
-	background: #eee; 
+	background: #eee;
 }
 i {
 	position: fixed !important;

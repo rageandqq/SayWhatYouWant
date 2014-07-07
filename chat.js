@@ -1,3 +1,6 @@
+/* 
+	Created by Sameer Chitley, 2014 
+									 */
 var socket = io();
 $('form').submit(function(){
 	if ($('#message-field').val() != null && $('#message-field').val().trim() != "" ) {
@@ -8,6 +11,7 @@ $('form').submit(function(){
 });
 socket.on('chat-message', function(message) {
 	$('#chat').append('<li>' + message + '</li>');
+	$('#chat').animate({scrollTop: $('#chat').prop("scrollHeight")}, 500);
 });
 socket.on('user-connection', function(num) {
 	$('#users').text('Users online: ' + num);
