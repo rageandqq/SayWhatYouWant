@@ -18,17 +18,18 @@ app.get('/', function(req, res) {
 	res.render('chat.html');
 });
 
+app.get ('*', function(req, res){
+	res.redirect ('/');
+});
+
 io.on('connection', function(socket) {
 	numUsersConnected++;
 	io.emit('user-connection', numUsersConnected);
-	console.log ("User connected. Users online: " + numUsersConnected);
 	socket.on('disconnect', function() {
 		numUsersConnected--;
 		io.emit('user-connection', numUsersConnected);
-		console.log ("User disconnected. Users online: " + numUsersConnected);
 	});
 	socket.on('chat-message', function(message) {
-		console.log ('User says: ' + message);
 		io.emit('chat-message', message);
 	});
 });
