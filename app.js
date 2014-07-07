@@ -8,6 +8,8 @@ var http = require('http');
 var server = http.Server(app);
 var io = require('socket.io')(server);
 
+io.set('heartbeat timeout', 5);
+
 var numUsersConnected = 0;
 
 app.set('views', path.join(__dirname, ''));
