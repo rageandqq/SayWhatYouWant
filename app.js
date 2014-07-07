@@ -35,6 +35,6 @@ io.on('connection', function(socket) {
 
 var port = process.env.PORT || 5000;
 
-server.listen(5000, function() {
+server.listen(port, function() {
 	console.log ('Started listening on port: ' + port);
 });
