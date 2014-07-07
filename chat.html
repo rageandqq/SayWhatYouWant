@@ -7,7 +7,8 @@
 		<link rel="stylesheet" type="text/css" href="chat.css"></link>
 	</head>
 	<body>
-		<i class="glyphicon glyphicon-info-sign" data-toggle="modal" data-target="#infoModal"></i>
+		<i class="glyphicon glyphicon-info-sign" data-toggle="modal" data-target="#infoModal" id="infoGlyph"></i>
+		<i class="glyphicon glyphicon-user" data-toggle="modal" data-target="#userModal" id="userGlyph"></i>
 		<div class="page-header">
 			<h1 class="text-center">Say What You Want<br><small id="users">Users online:</small></h1></br></h1>
 		</div>
@@ -31,11 +32,33 @@
 						<h2 class="modal-title text-center" id="myModalLabel">Say What You Want</h2>
 					</div>
 					<div class="modal-body text-center">
+						<h3><u>About</u></h3>
 						<h4 style="margin-top: 50px;">An online web-chat application.
 						<br>Say what you want, anonymously or not!</h4>
 						<hr style="margin-top: 50px;">
 						<p>Created by Sameer Chitley, 2014
 						<br><a href="https://github.com/rageandqq/SayWhatYouWant">Source available on GitHub.<br><img src="github.png"></a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h2 class="modal-title text-center" id="myModalLabel">Say What You Want</h2>
+					</div>
+					<div class="modal-body text-center" style="height: 150px;">
+					<h3><u>Set Username</u></h3>
+						<form class="container-fluid">
+							<div class="input-group" style="padding: 20px;">
+								<input type="text" class="form-control" id="name-field" placeholder="Name (Optional)" style="text-align:center;" autofocus>
+								<span class="input-group-btn">
+									<button class="btn btn-success" data-dismiss="modal">OK</button>
+								</span>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>

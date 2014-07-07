@@ -1,7 +1,6 @@
 /* 
 	Created by Sameer Chitley, 2014 
 									 */
-
 form {  
 	padding: 3px; 
 	position: fixed; 
@@ -9,6 +8,7 @@ form {
 	width: 100%; 
 	margin: 0 auto;
 }
+
 #chat { 
 	list-style-type: none; 
 	margin: 0; 
@@ -18,16 +18,31 @@ form {
 	overflow-y: scroll;
 	float: clear;
 }
+
 #chat li { 
 	padding: 5px 10px; 
 }
+
 #chat li:nth-child(odd) { 
 	background: #eee;
 }
-i {
+
+#infoGlyph {
 	position: fixed !important;
-	top: 5px !important;
-	right: 5px !important;
+	top: 10px !important;
+	right: 10px !important;
 	font-size: 1.5em;
 	cursor: pointer;
+}
+
+#userGlyph {
+	position: fixed !important;
+	top: 10px !important;
+	left: 10px !important;
+	font-size: 1.5em;
+	cursor: pointer;
+}
+
+h3 {
+	text-decoration: underline;
 }

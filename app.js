@@ -29,8 +29,12 @@ io.on('connection', function(socket) {
 		numUsersConnected--;
 		io.emit('user-connection', numUsersConnected);
 	});
-	socket.on('chat-message', function(message) {
-		io.emit('chat-message', message);
+	socket.on('chat-message', function(data) {
+		var editedData = {
+			user: ((data.user == null || data.user == '')?'Anon':data.user.trim()),
+			message: data.message.trim()
+		}
+		io.emit('chat-message', editedData);
 	});
 });
 
