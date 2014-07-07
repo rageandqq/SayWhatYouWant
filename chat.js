@@ -16,8 +16,8 @@ $('form').submit(function(){
 });
 
 socket.on('chat-message', function(data) {
-	if (data.message.toLowerCase() == 'l') {
-		$('#chat').append('<li><b>' + data.user + ' says: </b><i class="glyphicon glyphicon-thumbs-up"></li>');
+	if (glyphMap[data.message.toLowerCase()] != null) {
+		$('#chat').append('<li><b>' + data.user + ' says: </b>' + glyphMap[data.message.toLowerCase()] + '</li>');
 	}
 	else {
 		$('#chat').append('<li><b>' + data.user + ' says: </b>' + data.message + '</li>');
@@ -41,3 +41,15 @@ $('#infoModal').on('hidden.bs.modal', function () {
     $('#message-field').focus();
 })
 
+var glyphMap = {};
+glyphMap['l'] = '<i class="glyphicon glyphicon-thumbs-up">';
+glyphMap['+'] = '<i class="glyphicon glyphicon-plus">';
+glyphMap['*'] = '<i class="glyphicon glyphicon-asterisk">';
+glyphMap['<3'] = '<i class="glyphicon glyphicon-heart-empty">';
+glyphMap['u'] = '<i class="glyphicon glyphicon-magnet">';
+glyphMap['x'] = '<i class="glyphicon glyphicon-remove">';
+glyphMap['!'] = '<i class="glyphicon glyphicon-exclamation-sign">';
+glyphMap['$'] = '<i class="glyphicon glyphicon-usd">';
+glyphMap['>'] = '<i class="glyphicon glyphicon-chevron-right">';
+glyphMap['<'] = '<i class="glyphicon glyphicon-chevron-left">';
+glyphMap['?'] = '<i class="glyphicon glyphicon-question-sign">';
