@@ -11,7 +11,7 @@ $('form').submit(function(){
 });
 socket.on('chat-message', function(message) {
 	$('#chat').append('<li>' + message + '</li>');
-	$('#chat').animate({scrollTop: $('#chat').prop("scrollHeight")}, 500);
+	$('#chat').animate({scrollTop: $('#chat').prop("scrollHeight")}, 250);
 });
 socket.on('user-connection', function(num) {
 	$('#users').text('Users online: ' + num);
