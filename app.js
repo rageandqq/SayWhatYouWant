@@ -33,10 +33,10 @@ io.on('connection', function(socket) {
 	});
 	socket.on('chat-message', function(data) {
 		var editedData = {
-			user: ((data.user == null || data.user == '')?'Anon':data.user.trim()),
+			user: ((data.user == null || data.user == '')? 'Anon' : data.user.trim()),
 			message: data.message.trim()
 		}
-		io.emit('chat-message', editedData);
+		socket.broadcast.emit('chat-message', editedData);
 	});
 });
 

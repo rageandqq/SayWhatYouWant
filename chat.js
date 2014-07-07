@@ -9,13 +9,21 @@ $('form').submit(function(){
 			user: $('#name-field').val(),
 			message: $('#message-field').val()
 		}
+
 		socket.emit('chat-message', data);
 		$('#message-field').val('');
+
+		var editedData = {
+			user: ((data.user == null || data.user == '')? 'Anon' : data.user.trim()),
+			message: data.message.trim()
+		}
+		addMessage(editedData);
+
 		return false;
 	}
 });
 
-socket.on('chat-message', function(data) {
+function addMessage (data) {
 	if (glyphMap[data.message.toLowerCase()] != null) {
 		$('#chat').append('<li><b>' + data.user + ' says: </b>' + glyphMap[data.message.toLowerCase()] + '</li>');
 	}
@@ -23,6 +31,10 @@ socket.on('chat-message', function(data) {
 		$('#chat').append('<li><b>' + data.user + ' says: </b>' + data.message + '</li>');
 	}
 	$('#chat').animate({scrollTop: $('#chat').prop("scrollHeight")}, 250);
+}
+
+socket.on('chat-message', function(data) {
+	addMessage(data);
 });
 
 socket.on('user-connection', function(num) {
