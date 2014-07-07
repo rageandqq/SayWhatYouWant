@@ -53,6 +53,13 @@ $('#infoModal').on('hidden.bs.modal', function () {
     $('#message-field').focus();
 })
 
+$('#name-field').keypress(function(e) {		
+	if (e.which == 13 && $('#name-field').is(':focus')) {
+		$('#userModal').modal('hide');
+		return false;
+	}
+})
+
 var glyphMap = {};
 glyphMap['l'] = '<i class="glyphicon glyphicon-thumbs-up">';
 glyphMap['+'] = '<i class="glyphicon glyphicon-plus">';
