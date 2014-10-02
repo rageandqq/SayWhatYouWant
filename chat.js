@@ -48,6 +48,9 @@ $('form').submit(function(){
 });
 
 function addMessage (data) {
+	if (data.user == null || data.user == '') {
+		data.user = 'Anon';
+	}
 	if (glyphMap[data.message.toLowerCase()] != null) {
 		$('#chat').append('<li><b>' + data.user + ' says: </b>' + glyphMap[data.message.toLowerCase()] + '</li>');
 	}
