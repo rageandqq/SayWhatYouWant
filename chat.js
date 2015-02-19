@@ -38,7 +38,7 @@ $('form').submit(function(){
 		$('#message-field').val('');
 
 		var editedData = {
-			user: ((data.user == null || data.user !== '')? 'Anon' : data.user.trim()),
+			user: ((data.user == null || data.user.trim() == '')? 'Anon' : data.user.trim()),
 			message: message.trim()
 		};
 		addMessage(editedData);
